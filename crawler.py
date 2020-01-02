@@ -27,6 +27,9 @@ class Crawler(multiprocessing.Process):
             database.update_html(host=self.host, url=url, html=body.text)
             print(f'{self.host_hash}: {url.url_hash} html added, {len(links)} links found and processed')
 
+    def process_links(self, body):
+        raise NotImplementedError
+
     def find_url_list(self, database):
         urls = []
         for url in database.get_urls_by_host(self.host, self.limit):
