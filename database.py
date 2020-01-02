@@ -20,8 +20,8 @@ class FileStorage:
 
     def get_host(self, host_str):
         with open(self.host_file(host_str), 'r') as file:
-            return Host(json.load(file))
+            return Host(json=json.load(file))
 
     def get_url(self, url_tuple):
         with open(self.url_file(url_tuple), 'r') as file:
-            return Url(json.load(file))
+            return Url(json=json.load(file))
