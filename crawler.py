@@ -1,0 +1,27 @@
+import requests as web
+import bs4 as bs
+import re
+import multiprocessing
+
+
+class Crawler(multiprocessing.Process):
+
+    def __init__(self, *args, **kwargs):
+        super(Crawler, self).__init__()
+        self.host = kwargs.get('host', None)
+        self.host = kwargs.get('host', None)
+        if self.host is None:
+            raise AttributeError
+
+    def run(self):
+        database = Database()
+        url_list = self.find_url_list(database)
+        for url in url_list:
+            print(str(url))
+
+    def find_url_list(self, database):
+        urls = []
+        for url in database.get_urls_by_host(self.host, self.limit):
+            urls.append(url)
+        return urls
+
