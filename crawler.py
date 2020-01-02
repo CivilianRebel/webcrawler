@@ -9,8 +9,10 @@ class Crawler(multiprocessing.Process):
     def __init__(self, *args, **kwargs):
         super(Crawler, self).__init__()
         self.host = kwargs.get('host', None)
-        self.host = kwargs.get('host', None)
+        self.limit = kwargs.get('limit', None)
         if self.host is None:
+            raise AttributeError
+        if self.limit is None:
             raise AttributeError
 
     def run(self):
