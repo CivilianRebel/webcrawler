@@ -20,6 +20,12 @@ class Crawler(multiprocessing.Process):
         url_list = self.find_url_list(database)
         for url in url_list:
             print(str(url))
+            resp = web.get(url.url)
+            body = bs.BeautifulSoup(resp.text, 'lxml').body
+            links = self.process_links(body)
+            database.update_links(host=self.host, url=url, links=links)
+            database.update_html(host=self.host, url=url, html=body.text)
+            print(f'{self.host_hash}: {url.url_hash} html added, {len(links)} links found and processed')
 
     def find_url_list(self, database):
         urls = []
