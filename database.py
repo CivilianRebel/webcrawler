@@ -65,3 +65,11 @@ class FileStorage:
             os.mkdir(os.path.join(f, host_str))
         f = os.path.join(f, host_str, 'host_data.json')
         return f
+
+
+class Database:
+
+    def __init__(self):
+        pass
+
+
